@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './ExpensesFilter.css';
 
 const ExpensesFilter = (props) => {
-  const [selectedOption, setSelectedOption] = useState('');
-  const onFilterChangeHandler = (event) => {
-    setSelectedOption(event.target.value);
-
-    //TODO: investigate if folks use a callback after setting a state
-    //state update scheduled and not available immediately
-
-    console.log('from expensesFilter: ', selectedOption);
-
-    const filterByYear = event.target.value;
-    props.onFilterUpdateHandler(filterByYear);
+  const dropdownChangeHandler = (event) => {
+    //registers custom event handler
+    console.log(event.target.value);
+    props.onChangeFilter(event.target.value);
   };
+
   return (
     <div className='expenses-filter'>
       <div className='expenses-filter__control'>
         <label>Filter by year</label>
-        <select value={selectedOption} onChange={onFilterChangeHandler}>
+        <select value={props.selected} onChange={dropdownChangeHandler}>
           <option value='2022'>2022</option>
           <option value='2021'>2021</option>
           <option value='2020'>2020</option>
