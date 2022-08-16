@@ -2,10 +2,12 @@ import React from 'react';
 
 import './ExpensesFilter.css';
 
+//props to be able to control this component
 const ExpensesFilter = (props) => {
   const dropdownChangeHandler = (event) => {
     //registers custom event handler
     console.log(event.target.value);
+    //passing up to onChangeFilter
     props.onChangeFilter(event.target.value);
   };
 

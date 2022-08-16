@@ -2,20 +2,26 @@ import React, { useState } from 'react';
 
 import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
+
+//bring in component
 import ExpensesFilter from './ExpensesFilter';
 import './Expenses.css';
 
 const Expenses = (props) => {
+  //array deconstruction of useState - sets 2022 as default
   const [filteredYear, setFilteredYear] = useState('2022');
 
+  //filterChangeHandler - takes selected year and setsFiltered year to it
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
+    console.log('selected year from form: ', selectedYear);
   };
 
   return (
     <div>
       <Card className='expenses'>
         <ExpensesFilter
+          //keeps filtered year up to date by passing it down to props
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
